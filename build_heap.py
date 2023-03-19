@@ -39,39 +39,28 @@ def sift_down(i, data):
 def main():
 
 
-
-    try:
-        # read input
-        n = int(input().strip())
-        assert n > 0
-
+    text = input("Enter 'I' for input or 'F' for file")
+    if "F" in text:
+        file_name = input("Enter file name: ")
+        if "a" not in file_name:
+            path = './tests/' + file_name
+            with open(path, 'r', encoding='utf-8') as file:
+                n = int(file.readline())
+                data = list(map(int, file.readline().split()))
+    elif "I" in text:
+        n = int(input())
         data = list(map(int, input().split()))
-        assert len(data) == n
 
-        order = input().strip().upper()
-        assert order in ["I", "F"]
+    assert data is not None and len(data) == n
 
-        # build heap
-        swaps = build_heap(data)
+    swaps = build_heap(data)
 
-        # reverse array if order is "F"
-        if order == "F":
-            data = data[::-1]
-            swaps = [(n-1-i, n-1-j) for i,j in swaps[::-1]]
+    assert len(swaps) <= n*4
 
-        # check if resulting array is a valid heap
-        is_heap = all(data[i] <= data[(i-1)//2] for i in range(1, n))
-
-        # output swaps if heap is not valid
-        if not is_heap:
-            assert len(swaps) <= 4*n
-            print(len(swaps))
-            for i, j in swaps:
-                print(i, j)
-
-    except Exception as e:
-        print(e)
-
+    print(len(swaps))
+    for i, j in swaps:
+        print(i, j)
+ 
 if __name__ == "__main__":
     main()
 
