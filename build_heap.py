@@ -37,23 +37,22 @@ def sift_down(i, data):
 
 
 def main():
-    
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
+
+
 
     try:
         # input from keyboard
+        n_input = input().strip()
+        assert n_input.isnumeric()
+        n = int(n_input)
 
-        n = int(input().strip())
-        assert n > 0
-        data = list(map(int, input().split()))
-        order = input().strip()
-
-        # checks if length of data is the same as the said length
+        data_input = input().strip()
+        data = list(map(int, data_input.split()))
         assert len(data) == n
 
-        assert order in ["I", "F"]
+        order_input = input().strip()
+        assert order_input in ["I", "F"]
+        order = order_input
 
         if order == "F":
             data = data[::-1]
@@ -63,22 +62,17 @@ def main():
         if order == "F":
             swaps = [(n-1-i, n-1-j) for i,j in swaps[::-1]]
 
-        # TODO: output how many swaps were made, 
-        # this number should be less than 4n (less than 4*len(data))
+
 
         assert len(swaps) <= 4*n
         print(len(swaps))
 
-        # output all swaps
+
         for i, j in swaps:
             print(i, j)
 
-    except ValueError:
-        print("Invalid input! Please enter a valid integer.")
-
-    except AssertionError:
-        print("Invalid input! Please enter a valid value that meets the requirements.")
-
+    except (ValueError, AssertionError):
+        print("Invalid input! Please enter valid input that meets the requirements.")
 
 if __name__ == "__main__":
     main()
