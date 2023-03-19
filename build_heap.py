@@ -47,11 +47,12 @@ def main():
 
         n = int(input().strip())
         assert n > 0
-
         data = list(map(int, input().split()))
+        order = input().strip()
+
+        # checks if length of data is the same as the said length
         assert len(data) == n
 
-        order = input().strip()
         assert order in ["I", "F"]
 
         if order == "F":
@@ -71,6 +72,13 @@ def main():
         # output all swaps
         for i, j in swaps:
             print(i, j)
+
+    except ValueError:
+        print("Invalid input! Please enter a valid integer.")
+
+    except AssertionError:
+        print("Invalid input! Please enter a valid value that meets the requirements.")
+
 
 if __name__ == "__main__":
     main()
