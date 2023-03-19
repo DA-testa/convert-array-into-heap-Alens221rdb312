@@ -72,12 +72,6 @@ def main():
         for i, j in swaps:
             print(i, j)
 
-    except ValueError:
-        print("Invalid input! Please enter a valid integer.")
-
-    except AssertionError:
-        print("Invalid input! Please enter a valid value that meets the requirements.")
-
 if __name__ == "__main__":
     main()
 
