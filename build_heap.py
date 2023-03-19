@@ -44,11 +44,17 @@ def main():
 
 
     # input from keyboard
-    n = int(input().strip())
+    while True:
+        try:
+            n = int(input().strip())
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid integer.")
+    
     data = list(map(int, input().split()))
     order = input().strip()
 
-    # checks if lenght of data is the same as the said lenght
+    # checks if length of data is the same as the said length
     assert len(data) == n
 
     assert order in ["I", "F"]
