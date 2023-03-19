@@ -46,17 +46,28 @@ def main():
     # input from keyboard
     n = int(input().strip())
     data = list(map(int, input().split()))
+    order = input().strip()
 
     # checks if lenght of data is the same as the said lenght
     assert len(data) == n
+
+    assert order in ["I", "F"]
+
+    if order == "F":
+        data = data[::-1]
 
     # calls function to assess the data 
     # and give back all swaps
     swaps = build_heap(data)
 
+    if order == "F":
+        swaps = [(n-1-i, n-1-j) for i,j in swaps[::-1]]
+
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
-
+    
+    assert len(swaps) <= 4*n
+    print(len(swaps))
 
     # output all swaps
     print(len(swaps))
