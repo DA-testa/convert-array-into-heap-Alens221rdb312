@@ -42,44 +42,45 @@ def main():
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
 
+    try:
+        # input from keyboard
 
-    # input from keyboard
-    while True:
-        try:
-            n = int(input().strip())
-            break
-        except ValueError:
-            print("Invalid input! Please enter a valid integer.")
-    
-    data = list(map(int, input().split()))
-    order = input().strip()
+        n = int(input().strip())
+        assert n > 0
+        data = list(map(int, input().split()))
+        order = input().strip()
 
-    # checks if length of data is the same as the said length
-    assert len(data) == n
+        # checks if length of data is the same as the said length
+        assert len(data) == n
 
-    assert order in ["I", "F"]
+        assert order in ["I", "F"]
 
-    if order == "F":
-        data = data[::-1]
+        if order == "F":
+            data = data[::-1]
 
-    # calls function to assess the data 
-    # and give back all swaps
-    swaps = build_heap(data)
+        # calls function to assess the data 
+        # and give back all swaps
+        swaps = build_heap(data)
 
-    if order == "F":
-        swaps = [(n-1-i, n-1-j) for i,j in swaps[::-1]]
+        if order == "F":
+            swaps = [(n-1-i, n-1-j) for i,j in swaps[::-1]]
 
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-    
-    assert len(swaps) <= 4*n
-    print(len(swaps))
+        # TODO: output how many swaps were made, 
+        # this number should be less than 4n (less than 4*len(data))
 
-    # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+        assert len(swaps) <= 4*n
+        print(len(swaps))
 
+        # output all swaps
+        print(len(swaps))
+        for i, j in swaps:
+            print(i, j)
+
+    except ValueError:
+        print("Invalid input! Please enter a valid integer.")
+
+    except AssertionError:
+        print("Invalid input! Please enter a valid value that meets the requirements.")
 
 if __name__ == "__main__":
     main()
