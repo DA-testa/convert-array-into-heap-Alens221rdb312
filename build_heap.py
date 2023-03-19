@@ -39,42 +39,38 @@ def sift_down(i, data):
 def main():
 
 
-
+    
     try:
-        # input from keyboard
-        n_input = input().strip()
+        # read input
+        n = int(input().strip())
         assert n > 0
 
         data = list(map(int, input().split()))
-    assert len(data) == n
+        assert len(data) == n
 
-    order = input().strip().upper()
-    assert order in ["I", "F"]
+        order = input().strip().upper()
+        assert order in ["I", "F"]
 
-    # build heap
-    swaps = build_heap(data)
+        # build heap
+        swaps = build_heap(data)
 
-    # reverse array if order is "F"
-    if order == "F":
-        data = data[::-1]
-        swaps = [(n-1-i, n-1-j) for i,j in swaps[::-1]]
+        # reverse array if order is "F"
+        if order == "F":
+            data = data[::-1]
+            swaps = [(n-1-i, n-1-j) for i,j in swaps[::-1]]
 
-    # check if resulting array is a valid heap
-    is_heap = all(data[i] <= data[(i-1)//2] for i in range(1, n))
+        # check if resulting array is a valid heap
+        is_heap = all(data[i] <= data[(i-1)//2] for i in range(1, n))
 
-    # output swaps if heap is not valid
-    if not is_heap:
-        assert len(swaps) <= 4*n
-        print(len(swaps))
+        # output swaps if heap is not valid
+        if not is_heap:
+            assert len(swaps) <= 4*n
+            print(len(swaps))
+            for i, j in swaps:
+                print(i, j)
 
-        
-        for i, j in swaps:
-            print(i, j)
-    else:
-        print(0)
-
-except Exception as e:
-    print("Invalid input! Please enter valid input that meets the requirements.")        
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
     main()
