@@ -1,5 +1,5 @@
 # python3
-
+import sys
 
 def build_heap(data):
     swaps = []
@@ -64,7 +64,7 @@ def main():
 
         # output swaps if heap is not valid
         if not is_heap:
-            
+
             print(len(swaps))
             for i, j in swaps:
                 print(i, j)
