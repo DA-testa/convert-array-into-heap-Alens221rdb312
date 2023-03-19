@@ -47,19 +47,16 @@ def main():
 
         n = int(input().strip())
         assert n > 0
-        data = list(map(int, input().split()))
-        order = input().strip()
 
-        # checks if length of data is the same as the said length
+        data = list(map(int, input().split()))
         assert len(data) == n
 
+        order = input().strip()
         assert order in ["I", "F"]
 
         if order == "F":
             data = data[::-1]
 
-        # calls function to assess the data 
-        # and give back all swaps
         swaps = build_heap(data)
 
         if order == "F":
@@ -72,7 +69,6 @@ def main():
         print(len(swaps))
 
         # output all swaps
-        print(len(swaps))
         for i, j in swaps:
             print(i, j)
 
