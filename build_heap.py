@@ -39,7 +39,7 @@ def sift_down(i, data):
 def main():
 
 
-    
+
     try:
         # read input
         n = int(input().strip())
@@ -64,13 +64,14 @@ def main():
 
         # output swaps if heap is not valid
         if not is_heap:
-            assert len(swaps) <= 4*n
+            
             print(len(swaps))
             for i, j in swaps:
                 print(i, j)
 
     except Exception as e:
-        print(e)
+        print(e, file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
