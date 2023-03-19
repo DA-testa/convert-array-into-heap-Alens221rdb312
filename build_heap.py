@@ -1,5 +1,5 @@
 # python3
-import sys
+
 
 def build_heap(data):
     swaps = []
@@ -39,7 +39,7 @@ def sift_down(i, data):
 def main():
 
 
-    
+
     try:
         # read input
         n = int(input().strip())
@@ -69,13 +69,8 @@ def main():
             for i, j in swaps:
                 print(i, j)
 
-        # output success message if heap is valid
-        else:
-            print("0")
-
-    except:
-        print("Invalid input")
-        sys.exit(1)
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
     main()
